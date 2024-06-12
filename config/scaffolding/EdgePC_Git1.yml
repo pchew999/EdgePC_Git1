@@ -1,15 +1,6 @@
 version: "1.0"
 info:
   model: int-scaffold
-services:
-- serviceName: edge.pc_git1.integrations:gitservice
-  packages:
-  - name: EdgePC_Git1
-    version: "1.0"
-- serviceName: pub.flow:debugLog
-  packages:
-  - name: WmPublic
-    version: 11.0.0.0.560
 packages:
 - name: EdgePC_Git1
   gitServerName: PC_github
@@ -18,8 +9,85 @@ packages:
   gitToken: edge.scaffolding.EdgePC_Git1.PC_github.gitToken
   gitBranch: main
 - name: pcGitImportPackage
+  version: "1.0"
   gitServerName: PC_github
   gitUrl: https://github.com/pchew999
   gitUsername: pchew999
   gitToken: edge.scaffolding.pcGitImportPackage.PC_github.gitToken
   gitBranch: main
+- name: WmJDBCAdapter
+  wpmServer: https://packages.webmethods.io
+  wpmRegistry: softwareag
+services:
+- serviceName: edge.pc_git1.integrations:gitservice
+  packages:
+  - name: EdgePC_Git1
+    version: "1.0"
+  - name: pcGitImportPackage
+    version: "2.0"
+- serviceName: pub.flow:debugLog
+  packages:
+  - name: WmPublic
+    version: 11.0.0.0.927
+- serviceName: edge.pc_git1.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections:Database_1
+  packages:
+  - name: EdgePC_Git1
+    version: "1.0"
+  - name: pcGitImportPackage
+    version: "2.0"
+- serviceName: edge.pc_git1.integrations:importservice
+  packages:
+  - name: EdgePC_Git1
+    version: "1.0"
+  - name: pcGitImportPackage
+    version: "2.0"
+- serviceName: gitImport:myFlow
+  packages:
+  - name: pcGitImportPackage
+    version: "2.0"
+configurationVariables:
+  ? artConnection.EdgePC_Git1.edge.pc_git1.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionManagerSettings.startupBackoffSecs
+  : "10"
+  ? artConnection.EdgePC_Git1.edge.pc_git1.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.password
+  : "{AES}Y5IgMqjfvkgbg7p5VUZztw=="
+  ? artConnection.EdgePC_Git1.edge.pc_git1.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.networkProtocol
+  : ""
+  ? artConnection.EdgePC_Git1.edge.pc_git1.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionManagerSettings.blockingTimeout
+  : "5000"
+  ? artConnection.EdgePC_Git1.edge.pc_git1.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.keyStore
+  : ""
+  artConnection.EdgePC_Git1.edge.pc_git1.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionEnabled: "false"
+  ? artConnection.EdgePC_Git1.edge.pc_git1.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.databaseName
+  : wm1015
+  ? artConnection.EdgePC_Git1.edge.pc_git1.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionManagerSettings.poolIncrementSize
+  : "1"
+  ? artConnection.EdgePC_Git1.edge.pc_git1.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.portNumber
+  : "1433"
+  ? artConnection.EdgePC_Git1.edge.pc_git1.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionManagerSettings.minimumPoolSize
+  : "1"
+  ? artConnection.EdgePC_Git1.edge.pc_git1.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.dbType
+  : MSSQL
+  ? artConnection.EdgePC_Git1.edge.pc_git1.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.otherProperties
+  : loginTimeout=60;
+  ? artConnection.EdgePC_Git1.edge.pc_git1.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.driverType
+  : Progress® DataDirect®
+  ? artConnection.EdgePC_Git1.edge.pc_git1.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.user
+  : sa
+  ? artConnection.EdgePC_Git1.edge.pc_git1.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionManagerSettings.startupRetryCount
+  : "0"
+  ? artConnection.EdgePC_Git1.edge.pc_git1.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.transactionType
+  : NO_TRANSACTION
+  ? artConnection.EdgePC_Git1.edge.pc_git1.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionManagerSettings.poolable
+  : "true"
+  ? artConnection.EdgePC_Git1.edge.pc_git1.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.trustStore
+  : ""
+  ? artConnection.EdgePC_Git1.edge.pc_git1.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionManagerSettings.heartBeatInterval
+  : "0"
+  ? artConnection.EdgePC_Git1.edge.pc_git1.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.datasourceClass
+  : com.wm.dd.jdbcx.sqlserver.SQLServerDataSource
+  ? artConnection.EdgePC_Git1.edge.pc_git1.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionManagerSettings.expireTimeout
+  : "5000"
+  ? artConnection.EdgePC_Git1.edge.pc_git1.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionManagerSettings.maximumPoolSize
+  : "20"
+  ? artConnection.EdgePC_Git1.edge.pc_git1.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.serverName
+  : 172.17.0.4
